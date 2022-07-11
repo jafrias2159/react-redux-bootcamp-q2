@@ -1,36 +1,9 @@
 import React, { useState } from "react";
-import styled, { css } from "styled-components";
 import CartITem from "./CartITem";
 import mockData from "../../Mocks/data/products.json";
 import CartSummary from "./CartSummary";
+import { CardGridColumn, CardGridContainer, CardGridContent, CardGridTitle } from "./CartGrid.styles";
 
-const CardGridContainer = styled.div`
-  width: 90%;
-  margin: 36px auto;
-  border: 1px solid #c3c3c3;
-`;
-
-const CardGridTitle = styled.h2`
-  display: block;
-  text-align: center;
-`;
-
-const CardGridContent = styled.div`
-  width: 95%;
-  margin: 36px auto;
-  border: 1px solid #c3c3c3;
-  display: flex;
-`;
-
-const CardGridColumn = styled.div`
-  flex-grow: 7;
-  display: inline-block;
-  ${(props) =>
-    props.type === "small" &&
-    css`
-      flex-grow: 2;
-    `}
-`;
 
 const {
   data: { products },
@@ -59,6 +32,7 @@ const CartGrid = () => {
       />
     );
   });
+
   function updateQuantity(id, quantity) {
     const cartItemsCopy = [...cartProducts];
     const updatedCartItems = cartItemsCopy.map((cartItem) => {
@@ -75,9 +49,7 @@ const CartGrid = () => {
       <CardGridTitle>Shopping Cart</CardGridTitle>
       <CardGridContent>
         <CardGridColumn>{cartItemsElements}</CardGridColumn>
-        <CardGridColumn type="small">
-          <CartSummary cartProducts={cartProducts} />
-        </CardGridColumn>
+        <CartSummary cartProducts={cartProducts} />
       </CardGridContent>
     </CardGridContainer>
   );
