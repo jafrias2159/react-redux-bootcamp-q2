@@ -1,5 +1,5 @@
 import React from "react";
-import { CardGridColumn, CartSummaryContainer } from "./CartSummary.styles";
+import {CartSummaryContainer } from "./CartSummary.styles";
 
 const CartSummary = ({ cartProducts }) => {
   const totalCost = cartProducts.reduce((accumulator, object) => {
