@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CartITem from "./CartITem";
 import mockData from "../../Mocks/data/products.json";
 import CartSummary from "./CartSummary";
-import { CardGridColumn, CardGridContainer, CardGridContent, CardGridTitle } from "./CartGrid.styles";
+import { CardGrid, CardGridContainer, CardGridTitle } from "./CartGrid.styles";
 
 
 const {
@@ -47,10 +47,8 @@ const CartGrid = () => {
   return (
     <CardGridContainer>
       <CardGridTitle>Shopping Cart</CardGridTitle>
-      <CardGridContent>
-        <CardGridColumn>{cartItemsElements}</CardGridColumn>
+        <CardGrid>{cartItemsElements}</CardGrid>
         <CartSummary cartProducts={cartProducts} />
-      </CardGridContent>
     </CardGridContainer>
   );
 };

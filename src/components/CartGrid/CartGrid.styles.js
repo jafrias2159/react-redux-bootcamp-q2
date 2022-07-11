@@ -1,21 +1,21 @@
 import styled from "styled-components";
 
-export const CardGridColumn = styled.div`
-  flex-grow: 7;
-  display: inline-block;
-`;
-
 export const CardGridContainer = styled.div`
-  margin: 36px auto;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  grid-gap: 5px;
+  width: 75%;
+  margin: auto;
 `;
 
 export const CardGridTitle = styled.h2`
-  display: block;
   text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
 `;
 
-export const CardGridContent = styled.div`
-  margin: 36px auto;
-  display: flex;
-  width: 80%;
+export const CardGrid= styled.div`
+  display: grid;
 `;
