@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "../Products/";
 import mockData from "../../Mocks/data/products.json";
-import { Grid } from "./StyledComponents";
+import { Grid } from "./ProductsGrid.style";
 
 const {
   data: { products },

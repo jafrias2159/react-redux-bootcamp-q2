@@ -7,7 +7,7 @@ import {
   ProductName,
   ProductCategory,
   ProductPrice,
-} from "./StyledComponents";
+} from "./Product.style.js";
 
 const Product = ({ img, name, category, price }) => {
   return (
