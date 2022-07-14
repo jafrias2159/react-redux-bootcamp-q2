@@ -1,4 +1,10 @@
-import React from "react";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addNewProductQuantity,
+  removeProduct,
+} from '../../../redux/slices/cartSlice';
+import { getProductById } from '../../../redux/slices/productsSlice';
 import {
   CardItemButton,
   CartItemColumn,
@@ -7,12 +13,19 @@ import {
   CartItemImg,
   CartItemInput,
   CartITemTitle,
-} from "./CardItem.styles";
+} from './CardItem.styles';
 
-const CartITem = ({ id, img, price, name, quantity, updateQuantity }) => {
-  const setProductQuantity = (event, id) => {
-    const productQuantity = parseInt(event.target.value);
-    updateQuantity(id, productQuantity);
+const CartITem = ({ id, img, price, name, quantity }) => {
+  const selectedProduct = useSelector(getProductById(id));
+  const dispatch = useDispatch();
+
+  const handleOnChange = (event) => {
+    const quantity = event.target.value;
+    dispatch(addNewProductQuantity({ selectedProduct, quantity }));
+  };
+
+  const handleDeleteProduct = () => {
+    dispatch(removeProduct({ selectedProduct }));
   };
 
   return (
@@ -30,9 +43,9 @@ const CartITem = ({ id, img, price, name, quantity, updateQuantity }) => {
           name="quantity"
           type="number"
           value={quantity}
-          onChange={(event) => setProductQuantity(event, id)}
+          onChange={(event) => handleOnChange(event)}
         />
-        <CardItemButton>Remove</CardItemButton>
+        <CardItemButton onClick={handleDeleteProduct}>Remove</CardItemButton>
       </CartItemColumn>
       <CartItemColumn>
         <CartITemTitle>Price</CartITemTitle>${price.toFixed(2)}

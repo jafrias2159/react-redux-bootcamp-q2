@@ -23,6 +23,7 @@ const ProductsGrid = () => {
     return (
       <Product
         img={product.images[0]}
+        id={product.id}
         key={product.id}
         price={product.price}
         name={product.name}
