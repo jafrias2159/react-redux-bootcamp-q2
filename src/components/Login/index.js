@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { setCredentials } from "../../redux/slices/userSlice";
 import loginApi from "../../utils/loginApi";
 
 import {
@@ -11,6 +13,7 @@ import {
 } from "./Login.styles";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [inputValues, setInputValues] = useState({
     username: "",
@@ -26,10 +29,11 @@ const Login = () => {
     const { username, password } = inputValues;
     try {
       await loginApi(username, password);
-      history.push('/products');
+      dispatch(setCredentials({ username, password, validCrendetials: true }));
+      history.push("/products");
     } catch (e) {
       console.error(e);
-      history.push('/login');
+      history.push("/login");
     }
   }
 
