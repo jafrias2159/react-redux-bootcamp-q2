@@ -25,7 +25,7 @@ const Login = () => {
     setInputValues({ ...inputValues, [name]: value });
   }
 
-  async function LoginHandler() {
+  async function loginHandler() {
     const { username, password } = inputValues;
     try {
       await loginApi(username, password);
@@ -56,7 +56,7 @@ const Login = () => {
         onChange={getInputValue}
       />
 
-      <LoginButton onClick={LoginHandler}>Login</LoginButton>
+      <LoginButton onClick={loginHandler}>Login</LoginButton>
     </LoginContainer>
   );
 };
