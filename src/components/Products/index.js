@@ -12,7 +12,7 @@ import {
   ProductPrice,
 } from './Product.style.js';
 
-const Product = ({ img, name, category, price, id }) => {
+const Product = ({ img, name, category, price, id, showButton = true }) => {
   const dispatch = useDispatch();
   const selectedProduct = useSelector(getProductById(id));
   const handleClick = () => {
@@ -26,7 +26,9 @@ const Product = ({ img, name, category, price, id }) => {
         <ProductName>{name}</ProductName>
         <ProductCategory>{category}</ProductCategory>
         <ProductPrice>${price}</ProductPrice>
-        <CardButton onClick={handleClick}>Add to cart</CardButton>
+        {showButton && (
+          <CardButton onClick={handleClick}>Add to cart</CardButton>
+        )}
       </CardBody>
     </Card>
   );

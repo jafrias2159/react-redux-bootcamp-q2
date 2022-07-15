@@ -17,7 +17,7 @@ const ProductsGrid = () => {
       dispatch(fetchAllProducts());
       first.current = true;
     }
-  }, []);
+  }, [dispatch]);
 
   const Cards = products.map((product) => {
     return (

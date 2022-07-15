@@ -1,7 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+export const checkoutProducts = createAsyncThunk(
+  'cart/checkoutProducts',
+  async () => {
+    const requestResponse = await fetch(
+      'https://6x8prpit9f.execute-api.us-east-1.amazonaws.com/api/orders',
+      {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'x-api-key': '94tOOmgSAz3V6Xe7f2cMuz6qjgrIXS2xq8Xbly00',
+        },
+      }
+    );
+
+    const dataResut = await requestResponse.json();
+    return dataResut;
+  }
+);
 
 const initialState = {
   productsOnCart: [],
+  checkoutStatus: undefined,
 };
 
 const cartSlice = createSlice({
@@ -36,9 +56,15 @@ const cartSlice = createSlice({
       state.productsOnCart = products;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(checkoutProducts.fulfilled, (state, action) => {
+      state.checkoutStatus = { ...action.payload };
+    });
+  },
 });
 
 export const { addToCart, addNewProductQuantity, removeProduct } =
   cartSlice.actions;
 export const getCartProductsSelector = (state) => state.cart.productsOnCart;
+export const checkoutSelector = (state) => state.cart.checkoutStatus;
 export default cartSlice.reducer;
