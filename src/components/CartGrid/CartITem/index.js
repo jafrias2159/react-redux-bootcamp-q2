@@ -20,7 +20,7 @@ const CartITem = ({ id, img, price, name, quantity }) => {
   const dispatch = useDispatch();
 
   const handleOnChange = (event) => {
-    const quantity = event.target.value;
+    const quantity = parseFloat(event.target.value);
     dispatch(addNewProductQuantity({ selectedProduct, quantity }));
   };
 

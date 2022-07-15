@@ -1,31 +1,18 @@
-import React, { useMemo } from "react";
-import { CartSummaryContainer, CartSummaryButton } from "./CartSummary.styles";
+import React from 'react';
+import { CartSummaryContainer, CartSummaryButton } from './CartSummary.styles';
+import { useGetTotals } from './hooks';
 
 const CartSummary = ({ cartProducts }) => {
-  const totalCost = useMemo(
-    () =>
-      cartProducts.reduce((accumulator, product) => {
-        return accumulator + product.total;
-      }, 0),
-    [cartProducts]
-  );
-
-  const totalProducts = useMemo(
-    () =>
-      cartProducts.reduce((accumulator, product) => {
-        return accumulator + product.quantity;
-      }, 0),
-    [cartProducts]
-  );
+  const { totalPrice, totalQuantity } = useGetTotals(cartProducts);
 
   return (
     <CartSummaryContainer>
       <h4>Summary</h4>
       <hr />
-      <p>Items: {totalProducts}</p>
+      <p>Items: {totalQuantity}</p>
       <hr />
       <p>Total Cost</p>
-      <p>${totalCost.toFixed(2)}</p>
+      <p>${totalPrice}</p>
       <CartSummaryButton>Checkout</CartSummaryButton>
     </CartSummaryContainer>
   );
