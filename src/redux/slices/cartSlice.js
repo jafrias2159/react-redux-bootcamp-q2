@@ -55,6 +55,10 @@ const cartSlice = createSlice({
       );
       state.productsOnCart = products;
     },
+    emptyCar(state) {
+      state.productsOnCart = [];
+      state.checkoutStats = undefined;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(checkoutProducts.fulfilled, (state, action) => {
@@ -63,7 +67,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, addNewProductQuantity, removeProduct } =
+export const { addToCart, addNewProductQuantity, removeProduct, emptyCar } =
   cartSlice.actions;
 export const getCartProductsSelector = (state) => state.cart.productsOnCart;
 export const checkoutSelector = (state) => state.cart.checkoutStatus;

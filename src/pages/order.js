@@ -1,17 +1,27 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Product from '../components/Products';
 import { Grid } from '../components/ProductsGrid/ProductsGrid.style';
 import {
   checkoutSelector,
+  emptyCar,
   getCartProductsSelector,
 } from '../redux/slices/cartSlice';
 
 const Order = () => {
   const checkoutData = useSelector(checkoutSelector);
   const selectedProducts = useSelector(getCartProductsSelector);
+  const dispatch = useDispatch();
+  const ref = useRef(false);
 
-  
+  useEffect(() => {
+    return () => {
+      if (ref.current) {
+        dispatch(emptyCar());
+      }
+      ref.current = true;
+    };
+  }, []);
 
   const Cards = selectedProducts.map((product) => {
     return (
