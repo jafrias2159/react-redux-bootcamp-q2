@@ -22,7 +22,7 @@ const OrderDeatils = () => {
       }
       ref.current = true;
     };
-  }, []);
+  }, [dispatch]);
 
   const Cards = selectedProducts.map((product) => {
     return (
