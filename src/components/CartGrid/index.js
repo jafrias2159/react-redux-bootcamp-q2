@@ -20,10 +20,16 @@ const CartGrid = () => {
     );
   });
 
+  const gridContend = cartItemsElements.length ? (
+    cartItemsElements
+  ) : (
+    <h3>0 products in the cart</h3>
+  );
+
   return (
     <CardGridContainer>
       <CardGridTitle>Shopping Cart</CardGridTitle>
-      <CardGrid>{cartItemsElements}</CardGrid>
+      <CardGrid>{gridContend}</CardGrid>
       <CartSummary cartProducts={cartProducts} />
     </CardGridContainer>
   );
