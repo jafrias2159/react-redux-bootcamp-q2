@@ -13,14 +13,10 @@ const OrderDeatils = () => {
   const checkoutData = useSelector(checkoutSelector);
   const selectedProducts = useSelector(getCartProductsSelector);
   const dispatch = useDispatch();
-  const ref = useRef(false);
 
   useEffect(() => {
     return () => {
-      if (ref.current) {
-        dispatch(emptyCar());
-      }
-      ref.current = true;
+      dispatch(emptyCar());
     };
   }, [dispatch]);
 
