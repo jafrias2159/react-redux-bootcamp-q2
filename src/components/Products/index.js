@@ -1,4 +1,7 @@
-import React from "react";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../../redux/slices/cartSlice.js';
+import { getProductById } from '../../redux/slices/productsSlice.js';
 import {
   Card,
   CardImg,
@@ -7,9 +10,15 @@ import {
   ProductName,
   ProductCategory,
   ProductPrice,
-} from "./Product.style.js";
+} from './Product.style.js';
 
-const Product = ({ img, name, category, price }) => {
+const Product = ({ img, name, category, price, id, showButton = true }) => {
+  const dispatch = useDispatch();
+  const selectedProduct = useSelector(getProductById(id));
+  const handleClick = () => {
+    dispatch(addToCart(selectedProduct));
+  };
+
   return (
     <Card>
       <CardImg src={img} />
@@ -17,7 +26,9 @@ const Product = ({ img, name, category, price }) => {
         <ProductName>{name}</ProductName>
         <ProductCategory>{category}</ProductCategory>
         <ProductPrice>${price}</ProductPrice>
-        <CardButton>Add to cart</CardButton>
+        {showButton && (
+          <CardButton onClick={handleClick}>Add to cart</CardButton>
+        )}
       </CardBody>
     </Card>
   );

@@ -11,7 +11,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setCredentials(state, action) {
-      console.log("setCredentials", { state, action });
       state.username = action.payload.username;
       state.password = action.payload.password;
       state.validCrendetials = action.payload.validCrendetials;
